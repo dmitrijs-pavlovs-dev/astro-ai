@@ -29,11 +29,10 @@ jobs:
         run: bun install
 
       - name: Migrate database
-        run: cd packages/api && wrangler d1 migrations apply astro-ai-prod-db --account-id ${{ secrets.CF_ACCOUNT_ID }}
+        run: cd packages/api && bun run migrate
         env:
           NO_D1_WARNING: true
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3.3.2
