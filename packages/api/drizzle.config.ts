@@ -6,7 +6,7 @@ export default {
   driver: 'd1',
   dbCredentials: {
     wranglerConfigPath: 'wrangler.toml',
-    dbName: 'production',
+    dbName: 'astro-ai-prod-db',
   },
   verbose: false,
   strict: true,
