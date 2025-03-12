@@ -4,12 +4,12 @@ send_metrics = false
 node_compat = true
 route = "astro-ai.connection-tribe.net/*"
 workers_dev = false
+compatibility_flags = ["nodejs_compat"]
 
-# Development¯ environment
 [env.dev]
 name = "astro-ai-dev-env"
 workers_dev = true
-# route = "dev.astro-ai.connection-tribe.net/*"  # Uncomment if you want a dev subdomain
+compatibility_flags = ["nodejs_compat"]
 
 
 # name = "t4-stack"
