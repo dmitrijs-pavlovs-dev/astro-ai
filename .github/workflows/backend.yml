@@ -1,4 +1,4 @@
-name: 'Backend Deployment'
+name: "Backend Deployment"
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     branches:
       - master
     paths:
-      - 'packages/api/**'
+      - "packages/api/**"
 
 jobs:
   deploy:
@@ -20,24 +20,25 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: 'Bun setup'
+      - name: "Bun setup"
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
 
-      - name: 'Bun install'
+      - name: "Bun install"
         run: bun install
 
       - name: Migrate database
-        run: cd packages/api && bun run migrate
+        run: cd packages/api && wrangler d1 migrations apply astro-ai-prod-db --account-id ${{ secrets.CF_ACCOUNT_ID }}
         env:
           NO_D1_WARNING: true
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3.3.2
         with:
-          wranglerVersion: '3.15.0'
+          wranglerVersion: "3.15.0"
           apiToken: ${{ secrets.CF_API_TOKEN }}
           workingDirectory: packages/api
           command: deploy src/worker.ts
