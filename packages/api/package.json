@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "wrangler dev",
     "generate": "drizzle-kit generate:sqlite --schema=./src/db/schema.ts --out=./migrations",
-    "migrate": "wrangler d1 migrations apply astro-ai-prod-db",
-    "migrate:local": "wrangler d1 migrations apply astro-ai-prod-db --local",
-    "seed": "wrangler d1 execute astro-ai-prod-db --file=./seed/seed.sql",
+    "migrate": "wrangler d1 migrations apply astro-ai-prod-db --account-id 719e3374c9fabba87860b809acb3c939 --verbose",
+    "migrate:local": "wrangler d1 migrations apply astro-ai-prod-db --local --verbose",
+    "seed": "wrangler d1 execute astro-ai-prod-db --file=./seed/seed.sql --account-id 719e3374c9fabba87860b809acb3c939",
     "seed:local": "wrangler d1 execute astro-ai-prod-db --local --file=./seed/seed.sql",
     "studio": "drizzle-kit studio",
     "deploy": "wrangler deploy --minify src/worker.ts",
