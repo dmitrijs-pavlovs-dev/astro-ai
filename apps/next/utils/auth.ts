@@ -5,9 +5,12 @@ import type { GetServerSidePropsContext } from 'next/types'
 
 export const verifyToken = async (token: string): Promise<boolean> => {
   try {
+    console.log('Verifying token:', token);
+    console.log('Using JWT verification key:', process.env.JWT_VERIFICATION_KEY);
     const authorized = await jwt.verify(token, process.env.JWT_VERIFICATION_KEY as string, {
       algorithm: 'HS256',
-    })
+    });
+    console.log('Token verification result:', authorized);
     return authorized as boolean
   } catch (e) {
     console.error(e)
