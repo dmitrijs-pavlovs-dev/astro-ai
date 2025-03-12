@@ -5,7 +5,7 @@ export default function Page() {
   return (
     <>
       <Head>
-        <title>Home</title>
+        <title>Home xxx</title>
       </Head>
       <HomeScreen />
     </>
