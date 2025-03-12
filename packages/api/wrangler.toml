@@ -16,7 +16,7 @@
 
 
 
-name = "astro-ai-api"
+name = "astro-ai"
 compatibility_date = "2023-01-01"
 send_metrics = false
 node_compat = true
