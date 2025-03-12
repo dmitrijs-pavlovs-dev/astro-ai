@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "wrangler dev",
-    "generate": "drizzle-kit generate:sqlite --schema=./src/db/schema.ts --out=./migrations",
+    "generate": "drizzle-kit generate --dialect sqlite --schema=./src/db/schema.ts --out=./migrations",
     "migrate": "wrangler d1 migrations apply astro-ai-prod-db",
     "migrate:local": "wrangler d1 migrations apply astro-ai-prod-db --local",
     "seed": "wrangler d1 execute astro-ai-prod-db --file=./seed/seed.sql",
