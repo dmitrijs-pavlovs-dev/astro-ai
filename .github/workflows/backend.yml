@@ -28,8 +28,35 @@ jobs:
       - name: "Bun install"
         run: bun install
 
+      - name: Check wrangler configuration
+        run: |
+          echo "Checking wrangler configuration..."
+          cd packages/api
+          cat wrangler.toml
+
+      - name: Check Cloudflare D1 databases
+        run: |
+          echo "Listing available D1 databases..."
+          cd packages/api
+          bun x wrangler d1 list
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
+      - name: List migrations
+        run: |
+          echo "Listing available migrations..."
+          cd packages/api
+          bun x wrangler d1 migrations list astro-ai-prod-db
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          NO_D1_WARNING: true
+
       - name: Migrate database
-        run: cd packages/api && bun run migrate
+        run: |
+          echo "Running database migrations..."
+          cd packages/api
+          bun run migrate
+          echo "Migrations completed"
         env:
           NO_D1_WARNING: true
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
