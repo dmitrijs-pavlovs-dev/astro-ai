@@ -16,14 +16,17 @@
 
 
 
-name = "astro-ai"
+name = "astro-ai-api"
 compatibility_date = "2023-01-01"
 send_metrics = false
 node_compat = true
-route = "astro-ai.connection-tribe.net/*"
+route = "astro-ai-api.connection-tribe.net/*"
 workers_dev = false
 main = "src/worker.ts"
 account_id = "02d7c2de135e5c6040973b6699cff32c"
+
+[observability.logs]
+enabled = false
 
 # Production database
 [[ d1_databases ]]
