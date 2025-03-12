@@ -1,10 +1,15 @@
-name = "t4-stack"
-compatibility_date = "2023-10-30"
+name = "astro-ai"
+compatibility_date = "2023-01-01"
 send_metrics = false
 node_compat = true
-route = "app.t4stack.com/*"
+route = "astro-ai.connection-tribe.net/*"
 workers_dev = false
 
 [env.preview]
-name = "t4-stack-preview"
+name = "astro-ai-dev-env"
 workers_dev = true
+
+[[ d1_databases ]]
+binding = "DB"
+database_name = "astro-ai-prod-db"
+database_id = "ac0deee4-21d5-4912-843f-b12fcd492736"
