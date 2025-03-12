@@ -3,13 +3,13 @@ name: "Backend Deployment"
 on:
   push:
     branches:
-      - master
+      - main
 
 # on:
 #   workflow_dispatch:
 #   push:
 #     branches:
-#       - master
+#       - main
 #     paths:
 #       - "packages/api/**"
 
