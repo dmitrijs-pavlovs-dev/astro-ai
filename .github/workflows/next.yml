@@ -1,15 +1,19 @@
-name: 'Next.js Deployment'
+name: "Next.js Deployment"
+
+# on:
+#   workflow_dispatch:
+#   push:
+#     branches:
+#       - master
+#     paths:
+#       - 'apps/next/**'
+#       - 'packages/ui/**'
+#       - 'packages/app/**'
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - master
-    paths:
-      - 'apps/next/**'
-      - 'packages/ui/**'
-      - 'packages/app/**'
-
 jobs:
   publish:
     name: Publish to Cloudflare Pages
@@ -25,12 +29,12 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: 'Bun setup'
+      - name: "Bun setup"
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
 
-      - name: 'Bun install'
+      - name: "Bun install"
         run: bun install
 
       - name: Build
@@ -51,6 +55,6 @@ jobs:
           projectName: ${{ secrets.CF_PROJECT_NAME }}
           directory: .vercel/output/static
           branch: main
-          wranglerVersion: '3'
+          wranglerVersion: "3"
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           workingDirectory: apps/next

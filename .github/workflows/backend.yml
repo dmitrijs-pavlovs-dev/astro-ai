@@ -1,12 +1,17 @@
 name: "Backend Deployment"
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - master
-    paths:
-      - "packages/api/**"
+
+# on:
+#   workflow_dispatch:
+#   push:
+#     branches:
+#       - master
+#     paths:
+#       - "packages/api/**"
 
 jobs:
   deploy:
