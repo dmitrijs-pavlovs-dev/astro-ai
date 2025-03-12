@@ -1,15 +1,4 @@
-name = "t4-api"
-compatibility_date = "2023-10-30"
-send_metrics = false
-node_compat = true
-main = "src/worker.ts"
-account_id = "719e3374c9fabba87860b809acb3c939"
 
-[[d1_databases]]
-binding = "DB"
-database_name = "production"
-database_id = "aa5e3923-0f1b-469a-8bb8-d10fb866efe0"
-migrations_dir = "migrations"
 
 # The necessary secrets are:
 # - APP_URL - for preventing CORS errors
@@ -23,3 +12,35 @@ migrations_dir = "migrations"
 # Or use the Cloudflare web interface.
 # @link https://developers.cloudflare.com/workers/platform/environment-variables/#environment-variables-via-the-dashboard
 #
+
+
+
+
+name = "astro-ai"
+compatibility_date = "2023-01-01"
+send_metrics = false
+node_compat = true
+route = "astro-ai.connection-tribe.net/*"
+workers_dev = false
+main = "src/worker.ts"
+account_id = "02d7c2de135e5c6040973b6699cff32c"
+
+# Production database
+[[ d1_databases ]]
+binding = "DB"
+database_name = "astro-ai-prod-db"
+database_id = "ac0deee4-21d5-4912-843f-b12fcd492736"
+migrations_dir = "migrations"
+
+# Development¯ environment
+[env.dev]
+name = "astro-ai-dev-env"
+workers_dev = true
+# route = "dev.astro-ai.connection-tribe.net/*"  # Uncomment if you want a dev subdomain
+
+# Development database - make sure to create this and add its ID
+[[ env.dev.d1_databases ]]
+binding = "DB"
+database_name = "astro-ai-dev-db"
+database_id = "1b026686-7fac-4368-9fa4-ec9f60b44a87"
+migrations_dir = "migrations"
