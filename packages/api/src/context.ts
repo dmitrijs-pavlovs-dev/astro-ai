@@ -30,12 +30,12 @@ export const createContext = async (
       }
 
       try {
-        console.log('Verifying token:', sessionToken);
-        console.log('Using JWT verification key:', JWT_VERIFICATION_KEY);
+        console.log('Verifying token:', sessionToken)
+        console.log('Using JWT verification key:', JWT_VERIFICATION_KEY)
         const authorized = await jwt.verify(sessionToken, JWT_VERIFICATION_KEY, {
           algorithm: 'HS256',
         })
-        console.log('Token verification result:', authorized);
+        console.log('Token verification result:', authorized)
         if (!authorized) {
           return null
         }

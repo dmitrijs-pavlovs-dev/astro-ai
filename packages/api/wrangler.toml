@@ -41,10 +41,3 @@ migrations_dir = "migrations"
 name = "astro-ai-dev-env"
 workers_dev = true
 # route = "dev.astro-ai.connection-tribe.net/*"  # Uncomment if you want a dev subdomain
-
-# Development database - make sure to create this and add its ID
-[[ env.dev.d1_databases ]]
-binding = "DB"
-database_name = "astro-ai-dev-db"
-database_id = "1b026686-7fac-4368-9fa4-ec9f60b44a87"
-migrations_dir = "migrations"

@@ -29,6 +29,13 @@
       "when": 1699079033736,
       "tag": "0003_hot_ultragirl",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1742033838123,
+      "tag": "0004_aspiring_gamora",
+      "breakpoints": true
     }
   ]
 }

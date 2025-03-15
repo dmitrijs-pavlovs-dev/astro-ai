@@ -48,6 +48,10 @@ export function HomeScreen() {
     href: '/params/tim',
   })
 
+  const astroLink = useLink({
+    href: '/astro',
+  })
+
   return (
     <ScrollView>
       <YStack flex={1} jc='center' ai='center' p='$4' space='$4'>
@@ -85,6 +89,9 @@ export function HomeScreen() {
 
         <H3>🦮🐴 App Demos</H3>
         <YStack space='$2'>
+          <Button {...astroLink} space='$2'>
+            Astrocartography
+          </Button>
           <Button {...virtualizedListLink} space='$2'>
             Virtualized List
           </Button>
