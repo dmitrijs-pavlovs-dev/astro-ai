@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
+import { planetColors } from './AstroLegend'
 
 // Types for our props
 export interface MapboxMapWebProps {
@@ -9,16 +10,6 @@ export interface MapboxMapWebProps {
     angleType: string
     coordinates: [number, number][]
   }>
-}
-
-// Planet color mapping
-const planetColors: Record<string, string> = {
-  Sun: '#FFD700', // Gold
-  Moon: '#C0C0C0', // Silver
-  Venus: '#00FF00', // Green
-  Mars: '#FF0000', // Red
-  Jupiter: '#4B0082', // Indigo
-  Saturn: '#800000', // Maroon
 }
 
 // Type for global mapboxgl to avoid TypeScript errors
@@ -152,13 +143,5 @@ export function MapboxMapWeb({ lines }: MapboxMapWebProps) {
     }
   }, [lines, mapLoaded])
 
-  // Style for the map container div
-  const mapStyle: React.CSSProperties = {
-    width: '100%',
-    height: '100%',
-    borderRadius: '8px',
-    overflow: 'hidden',
-  }
-
-  return <div ref={mapContainer} style={mapStyle} />
+  return <div ref={mapContainer} style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
 }

@@ -4,6 +4,7 @@ import { useForm, Controller } from 'react-hook-form'
 import { z } from 'zod'
 import { Button, Input, Label, ScrollView, Text, XStack, YStack } from '@t4/ui'
 import { AstroMap } from 'app/components/AstroMap'
+import { AstroLegend } from 'app/components/AstroLegend'
 import { trpc } from 'app/utils/trpc'
 
 // Form validation schema
@@ -173,25 +174,30 @@ export default function AstroScreen() {
         )}
 
         {mapVisible && (
-          <YStack height={500}>
-            {planetaryLines ? (
-              <>
-                <XStack justifyContent='space-between' mb='$2'>
-                  <Text fontSize='$5' fontWeight='bold'>
-                    Your Astrocartography Map
-                  </Text>
-                  <Button size='sm' variant='outlined' onPress={() => setMapVisible(false)}>
-                    New Map
-                  </Button>
-                </XStack>
-                <AstroMap lines={planetaryLines} />
-              </>
-            ) : (
-              <YStack flex={1} justifyContent='center' alignItems='center'>
-                <Text>Loading your map...</Text>
-              </YStack>
-            )}
-          </YStack>
+          <>
+            <YStack height={500}>
+              {planetaryLines ? (
+                <>
+                  <XStack justifyContent='space-between' mb='$2'>
+                    <Text fontSize='$5' fontWeight='bold'>
+                      Your Astrocartography Map
+                    </Text>
+                    <Button size='sm' variant='outlined' onPress={() => setMapVisible(false)}>
+                      New Map
+                    </Button>
+                  </XStack>
+                  <AstroMap lines={planetaryLines} />
+                </>
+              ) : (
+                <YStack flex={1} justifyContent='center' alignItems='center'>
+                  <Text>Loading your map...</Text>
+                </YStack>
+              )}
+            </YStack>
+
+            {/* Map Legend */}
+            <AstroLegend hasLines={!!planetaryLines && planetaryLines.length > 0} />
+          </>
         )}
       </YStack>
     </ScrollView>
