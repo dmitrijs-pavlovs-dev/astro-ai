@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
-import { planetColors } from './AstroLegend'
+import { planetColors, angleDashPatterns } from './AstroLegend'
 
 // Types for our props
 export interface MapboxMapWebProps {
@@ -18,6 +18,16 @@ declare global {
     mapboxgl?: any
   }
 }
+
+// Define different line patterns for each angle type
+// const angleDashPatterns: Record<string, number[]> = {
+//   Conjunction: [1, 0], // Solid line
+//   Opposition: [2, 2], // Dashed line
+//   Rising: [1, 1], // Dotted line
+//   Setting: [4, 2], // Long dash
+//   MC: [1, 1, 3, 1], // Dot dash
+//   IC: [4, 1, 1, 1], // Long dash dot
+// }
 
 export function MapboxMapWeb({ lines }: MapboxMapWebProps) {
   const mapContainer = useRef<HTMLDivElement>(null)
@@ -55,7 +65,7 @@ export function MapboxMapWeb({ lines }: MapboxMapWebProps) {
           'high-color': 'rgb(36, 92, 223)', // Upper atmosphere
           'horizon-blend': 0.4, // Atmosphere thickness
           'space-color': 'rgb(2, 5, 10)', // Dark space
-          'star-intensity': 0.6 // Star brightness
+          'star-intensity': 0.6, // Star brightness
         })
       }
     })
@@ -101,6 +111,10 @@ export function MapboxMapWeb({ lines }: MapboxMapWebProps) {
         const id = `line-${line.planet}-${line.angleType}`
         const color = planetColors[line.planet] || '#ffffff'
 
+        let dashPattern = angleDashPatterns[line.angleType]
+
+        console.log(`Adding line: ${id}, dashPattern:`, dashPattern)
+
         console.log(`Adding line: ${id}, coordinates:`, line.coordinates.length)
 
         // Only add if we have valid coordinates
@@ -132,6 +146,7 @@ export function MapboxMapWeb({ lines }: MapboxMapWebProps) {
               'line-width': 3,
               'line-opacity': 0.9,
               'line-blur': 1, // Add glow effect
+              'line-dasharray': dashPattern, // Apply the dash pattern based on angle type
             },
           })
         } else {
